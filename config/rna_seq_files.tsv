@@ -1,0 +1,5 @@
+strain	fq1	fq2
+BL5905	data/raw/BL5905_R1_001.fastq.gz	data/raw/BL5905_R2_001.fastq.gz
+BL3605	data/raw/BL3605_R1_001.fastq.gz	data/raw/BL3605_R2_001.fastq.gz
+BL36303	data/raw/BL36303_R1_001.fastq.gz	data/raw/BL36303_R2_001.fastq.gz
+BL36304	data/raw/BL36304_R1_001.fastq.gz	data/raw/BL36304_R2_001.fastq.gz

@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - bioconda::liftoff=1.6.3
+  - bioconda::minimap2=2.28

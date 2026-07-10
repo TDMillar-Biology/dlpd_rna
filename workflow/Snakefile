@@ -1,0 +1,32 @@
+import pandas as pd
+
+configfile: "config/config.yaml"
+
+# Load sample sheet
+samples_df = pd.read_csv("config/rna_seq_files.tsv", sep=r"\s+").set_index("strain", drop=False)
+STRAINS = samples_df["strain"].tolist()
+
+# Load assemblies sheet
+assemblies_df = pd.read_csv("config/genome_files.tsv", sep=r"\s+").set_index("strain", drop=False)
+
+# Helper function to read assembly path from the genome_files sheet under config
+def get_assembly_path(wildcards):
+    """Fetches the exact assembly path from the TSV for a given strain."""
+    return assemblies_df.loc[wildcards.strain, "assembly"]
+
+# Define final targets for Phases 1 & 2
+rule all:
+    input:
+        # Phase 0: Liftoff
+        expand("results/00_annotation/{strain}_personalized.gtf", strain=STRAINS),
+        # Phase 1: QC
+        "results/qc/multiqc_report.html",
+        # Phase 2: Mapping (ISO1 Baseline)
+        expand("results/alignments_iso1/{strain}_iso1_Aligned.sortedByCoord.out.bam", strain=STRAINS),
+        # Phase 2: Mapping (Personalized Ground Truth)
+        expand("results/alignments_personalized/{strain}_pers_Aligned.sortedByCoord.out.bam", strain=STRAINS)
+
+# Include module rules
+include: "rules/00_annotation.smk"
+include: "rules/01_qc.smk"
+include: "rules/02_mapping.smk"

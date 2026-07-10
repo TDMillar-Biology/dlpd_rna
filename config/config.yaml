@@ -1,0 +1,15 @@
+# Global reference paths
+references:
+  ref_genome: "data/references/ISO1_r6.58/dmel-all-chromosome-r6.58.fasta"
+  ref_gtf: "data/references/ISO1_r6.58/dmel-all-r6.58.gtf"
+  # this gets generated real time
+  filtered_ref_gtf: "data/references/ISO1_r6.58/dmel-all-r6.58.filtered.gtf"
+  
+  # Base directory for personalized genomes
+  personalized_dir: "data/assemblies"
+
+# Tool parameters
+fastp:
+  threads: 4
+star:
+  threads: 8
