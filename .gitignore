@@ -3,3 +3,4 @@ results
 data
 .snakemake
 intermediate_files
+dlpd_rna.tar
